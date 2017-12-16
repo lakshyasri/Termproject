@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+   <title>Registration Page</title>
+</h:head>
+<h:body>
+  <f:view>
+    <h:form id="registerForm">
+      <table>  
+        <tr>
+			<td><h:outputText value="Enter Your First Name"/></td>
+			<td><h:inputText id="firstname" value="#{user.firstname}" required="true" requiredMessage="Field should be filled"/></td>
+			<td><h:message for="name" style="color:red"/></td>
+		</tr>
+		<tr>
+			<td><h:outputText value="Enter Last name"/></td>
+			<td><h:inputText id="lastname" value="#{user.lastname}" required="true" requiredMessage="Field should be filled"/></td>
+			<td><h:message for="lastname" style="color:red"/></td>
+		</tr>
+		<tr>
+			<td><h:outputText value="Enter Your Address"/></td>
+			<td><h:inputText id="addr" value="#{user.address}" required="true" requiredMessage="Field should be filled"/></td>
+			<td><h:message for="addr" style="color:red"/></td>
+		</tr>
+		<tr>
+			<td><h:outputText value="Enter Your Phone Number"/></td>
+			<td><h:inputText id="phno" value="#{user.phonenumber}" required="true" requiredMessage="Field should be filled"/></td>
+			<td><h:message for="phno" style="color:red"/></td>
+		</tr>
+		<tr>
+			<td><h:outputText value="Enter Your Email"/></td>
+			<td><h:inputText id="email" value="#{user.email}" required="true" requiredMessage="Field should be filled"/></td>
+			<td><h:message for="email" style="color:red"/></td>
+		</tr>
+		<tr>
+			<td><h:outputText value="Enter Your User Name"/></td>
+			<td><h:inputText id="uname" value="#{user.username}" required="true" requiredMessage="Field should be filled"/></td>
+			<td><h:message for="uname" style="color:red"/></td>
+		</tr>
+		<tr>
+			<td><h:outputText value="Enter Password"/></td>
+			<td><h:inputSecret id="psw" value="#{user.password}" required="true" requiredMessage="Field should be filled"/></td>
+			<td><h:message for="psw" style="color:red"/></td>
+		</tr>
+		<tr>
+			<td><h:commandButton value="Register" action="#{user.add}"/></td>
+		</tr>
+		<tr>
+		<td>
+		</td>
+		</tr>
+	  </table>
+<h:commandLink value="home" action="index.xhtml"></h:commandLink>
+</h:form>
+</f:view>
+
+</h:body>
+</html>

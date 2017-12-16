@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <style>  
+        
+        h2
+        {
+         color: blue;
+         font: Times New Roman;
+        }
+        
+        div.transbox 
+        {
+        margin: 30px;
+        width : 400px;
+        background-color: #ffffff;
+        border: 1px solid black;
+        opacity: 0.9;
+        filter: alpha(opacity=90); 
+        }
+                     
+        .Backimage
+        {
+         background-image:url("background.jpg"); 
+        }
+                 
+        </style>
+        <title>Welcome to MyStock</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"></link>
+
+        <!-- Custom styles for this template -->
+        <link rel="stylesheet" href="css/style.css" ></link>
+    </h:head>
+    <h:body styleClass="Backimage">
+        <div class="transbox">
+        <div class="container" align="left">
+
+            <h:form id="loginManager" class="form-signin">
+                <h2 class="form-signin-heading">Manager Login</h2>
+                <h:messages style="color: red;"/>
+                <div class="form-group">
+                    <h:outputLabel value="Managerrname"/>
+                    <h:inputText id="managername" class="form-control" value="#{userBean.username}" required="true" requiredMessage="Please enter Managerername" p:placeholder="Admin" styleClass="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel value="Password"/>
+                    <h:inputSecret id="password1" value="#{userBean.password}" required="true" requiredMessage="Please enter Password" p:placeholder="Admin" styleClass="form-control" />
+                </div>
+
+                <div class="form-group text-center">
+                    <!--<h:link value="Register Now" outcome="register" /><br />-->
+                    <h:commandButton value="Login" action="#{userBean.validateUser}" styleClass="btn btn-success btn-login-submit" />
+                
+                </div>
+                
+            </h:form>
+			
+        </div> <!-- /container -->
+ 
+       </div>
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    </h:body>
+</html>
