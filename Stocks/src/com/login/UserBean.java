@@ -80,10 +80,10 @@ public class UserBean {
         boolean valid = LoginDAO.validatem(managername, passwordm);
         if (valid == true) {
 
-            return "userhome?faces-redirect=true";
+            return "managerhome?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN, "Incorrect Username and Passowrd. Please enter correct username and Password",""));
-            return "fail";
+            return "login";
         }
     }
        
@@ -91,10 +91,10 @@ public class UserBean {
         boolean valid = LoginDAO.validatea(adminusername, adminpassword);
         if (valid == true) {
 
-            return "userhome?faces-redirect=true";
+            return "admin?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN, "Incorrect Username and Passowrd. Please enter correct username and Password",""));
-            return "fail";
+            return "login";
         }
     }
 
