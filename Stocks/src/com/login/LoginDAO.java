@@ -9,7 +9,8 @@ import javax.faces.context.FacesContext;
 
 public class LoginDAO {
 
-    public static boolean validate(String username, String password) {
+    public static boolean validate(String username, String password)
+    {
         Connection con = null;
         PreparedStatement ps = null;
 
@@ -19,6 +20,8 @@ public class LoginDAO {
             ps.setString(1, username);
             ps.setString(2, password);
 
+ 
+            
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -39,4 +42,69 @@ public class LoginDAO {
         return false;
     }
 
+    public static boolean validatem(String managername, String passwordm)
+    {
+        Connection con = null;
+        PreparedStatement ps = null;
+        
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("select * from managers where managername = ? and passwordm = ?");
+            
+            ps.setString(1, managername);
+            ps.setString(2, passwordm);
+            
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("managername", rs.getString("managername"));
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("uid", rs.getString("uid"));
+                //System.out.println("uid: " + rs.getString("uid"));
+                //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(key,object);
+                DataConnect.close(con);
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Login error -->" + ex.getMessage());
+            return false;
+        } finally {
+
+        }
+        return false;
+    }
+
+    public static boolean validatea(String usernamea, String passworda)
+    {
+        Connection con = null;
+        PreparedStatement ps = null;
+        
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("select * from admin where usernamea = ? and passworda = ?");
+            
+            ps.setString(1, usernamea);
+            ps.setString(2, passworda);
+
+            
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usernamea", rs.getString("usernamea"));
+                //System.out.println("uid: " + rs.getString("uid"));
+                //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(key,object);
+                DataConnect.close(con);
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Login error -->" + ex.getMessage());
+            return false;
+        } finally {
+
+        }
+        return false;
+    }
 }
+

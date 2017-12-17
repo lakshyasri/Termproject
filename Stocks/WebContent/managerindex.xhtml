@@ -46,17 +46,17 @@
                 <h:messages style="color: red;"/>
                 <div class="form-group">
                     <h:outputLabel value="Managerrname"/>
-                    <h:inputText id="managername" class="form-control" value="#{userBean.username}" required="true" requiredMessage="Please enter Managerername" p:placeholder="Admin" styleClass="form-control" />
+                    <h:inputText id="managername" class="form-control" value="#{userBean.managername}" required="true" requiredMessage="Please enter Managerername" p:placeholder="Admin" styleClass="form-control" />
                 </div>
 
                 <div class="form-group">
                     <h:outputLabel value="Password"/>
-                    <h:inputSecret id="password1" value="#{userBean.password}" required="true" requiredMessage="Please enter Password" p:placeholder="Admin" styleClass="form-control" />
+                    <h:inputSecret id="password1" value="#{userBean.passwordm}" required="true" requiredMessage="Please enter Password" p:placeholder="Admin" styleClass="form-control" />
                 </div>
 
                 <div class="form-group text-center">
                     <!--<h:link value="Register Now" outcome="register" /><br />-->
-                    <h:commandButton value="Login" action="#{userBean.validateUser}" styleClass="btn btn-success btn-login-submit" />
+                    <h:commandButton value="Login" action="#{userBean.validateManager}" styleClass="btn btn-success btn-login-submit" />
                 
                 </div>
                 

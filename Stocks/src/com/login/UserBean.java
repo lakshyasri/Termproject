@@ -15,8 +15,26 @@ public class UserBean {
     private String managername;
     private String passwordm;
 	private String password;
+	private String adminusername;
+	private String adminpassword;
     
-    public String getManagername() {
+    public String getAdminusername() {
+		return adminusername;
+	}
+
+	public void setAdminusername(String adminusername) {
+		this.adminusername = adminusername;
+	}
+
+	public String getAdminpassword() {
+		return adminpassword;
+	}
+
+	public void setAdminpassword(String adminpassword) {
+		this.adminpassword = adminpassword;
+	}
+
+	public String getManagername() {
 		return managername;
 	}
 
@@ -58,14 +76,25 @@ public class UserBean {
             return "login";
         }
     }
-    public String validateManagerer() {
-        boolean valid = LoginDAO.validate(managername, passwordm);
+    public String validateManager() {
+        boolean valid = LoginDAO.validatem(managername, passwordm);
         if (valid == true) {
 
             return "userhome?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN, "Incorrect Username and Passowrd. Please enter correct username and Password",""));
-            return "login";
+            return "fail";
+        }
+    }
+       
+    public String validateAdmin() {
+        boolean valid = LoginDAO.validatea(adminusername, adminpassword);
+        if (valid == true) {
+
+            return "userhome?faces-redirect=true";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN, "Incorrect Username and Passowrd. Please enter correct username and Password",""));
+            return "fail";
         }
     }
 
