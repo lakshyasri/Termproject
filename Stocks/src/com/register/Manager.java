@@ -116,7 +116,7 @@ public class Manager {
 			try {
 				con = DataConnect.getConnection();
 				if (con != null) {
-					String sql = "INSERT INTO managers(firstname, lastname, address, email, phonenumber, passwordm, managername) VALUES(?,?,?,?,?,?,?)";
+					String sql = "INSERT INTO tempmanagers(firstname, lastname, address, email, phonenumber, passwordm, managername) VALUES(?,?,?,?,?,?,?)";
 					ps = con.prepareStatement(sql);
 					ps.setString(1, firstname);
 					ps.setString(2, lastname);
