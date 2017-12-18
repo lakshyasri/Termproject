@@ -38,31 +38,7 @@
         <link rel="stylesheet" href="css/style.css" ></link>
     </h:head>
     <h:body styleClass="Backimage">
-        <div class="transbox">
-        <div class="container" align="left">
-
-            <h:form id="login" class="form-signin">
-                <h2 class="form-signin-heading">Login Admin</h2>
-                <h:messages style="color: red;"/>
-                <div class="form-group">
-                    <h:outputLabel value="Admin"/>
-                    <h:inputText id="adminusername" class="form-control" value="#{userBean.adminusername}" required="true" requiredMessage="Please enter Username" p:placeholder="Admin" styleClass="form-control" />
-                </div>
-
-                <div class="form-group">
-                    <h:outputLabel value="Password"/>
-                    <h:inputSecret id="password" value="#{userBean.adminpassword}" required="true" requiredMessage="Please enter Password" p:placeholder="Admin" styleClass="form-control" />
-                </div>
-
-                <div class="form-group text-center">
-                    <!--<h:link value="Register Now" outcome="register" /><br />-->
-                    <h:commandButton value="Login" action="#{userBean.validateAdmin}" styleClass="btn btn-success btn-login-submit" />
-                </div>
-                
-            </h:form>
-           			
-         </div> <!-- /container -->
-         </div>
+        
         <!-- Bootstrap core JavaScript -->
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

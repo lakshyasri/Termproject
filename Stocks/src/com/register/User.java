@@ -16,29 +16,17 @@ import javax.sql.DataSource;
 
 import com.login.DataConnect;
 
-@ManagedBean(name = "manager")
+@ManagedBean(name = "user")
 @SessionScoped
-public class Manager {
+public class User {
 
 	private String firstname;
 	private String lastname;
-	private String managername;
-	private String passwordm;
+	private String username;
+	private String password;
 	private String address;
-	private int phonenumber;
-
-	public int getPhonenumber() {
-		return phonenumber;
-	}
-
-	public void setPhonenumber(int phonenumber) {
-		this.phonenumber = phonenumber;
-	}
-
+	private String phonenumber;
 	private String email;
-	private String dbPassword;
-	private String dbName;
-	DataSource ds;
 
 	public String getFirstname() {
 		return firstname;
@@ -56,12 +44,12 @@ public class Manager {
 		this.lastname = lastname;
 	}
 
-	public String getmanagername() {
-		return managername;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setmanagername(String managername) {
-		this.managername = managername;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getAddress() {
@@ -72,12 +60,37 @@ public class Manager {
 		this.address = address;
 	}
 
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	private String dbPassword;
+	private String dbName;
+	DataSource ds;
+
+	boolean isLoginPage = (FacesContext.getCurrentInstance().getViewRoot()
+			.getViewId().lastIndexOf("login.xhtml") > -1);
+
+	public User() {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/database");
+			System.out.println("In user constructor");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getDbPassword() {
@@ -88,25 +101,12 @@ public class Manager {
 		return dbName;
 	}
 
-	public String getPasswordm() {
-		return passwordm;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPasswordm(String passwordm) {
-		this.passwordm = passwordm;
-	}
-
-	boolean isLoginPage = (FacesContext.getCurrentInstance().getViewRoot()
-			.getViewId().lastIndexOf("login.xhtml") > -1);
-
-	public Manager() {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/database");
-			System.out.println("In user constructor");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String add() {
@@ -117,15 +117,15 @@ public class Manager {
 			try {
 				con = DataConnect.getConnection();
 				if (con != null) {
-					String sql = "INSERT INTO tempmanagers(firstname, lastname, address, email, passwordm, phonenumber, managername) VALUES(?,?,?,?,?,?,?)";
+					String sql = "INSERT INTO users(firstname, lastname, address, email, phonenumber, password, username) VALUES(?,?,?,?,?,?,?)";
 					ps = con.prepareStatement(sql);
 					ps.setString(1, firstname);
 					ps.setString(2, lastname);
 					ps.setString(3, address);
 					ps.setString(4, email);
-					ps.setString(5, passwordm);
-					ps.setInt(6, phonenumber);
-					ps.setString(7, managername);
+					ps.setString(5, password);
+					ps.setString(6, phonenumber);
+					ps.setString(7, username);
 					i = ps.executeUpdate();
 				}
 			} catch (Exception e) {
@@ -145,39 +145,6 @@ public class Manager {
 			return "index";
 	}
 
-	public String insert( String firstname, String lastname, String address, String managername, String email, int phonenumber, String passwordm) {
-		int i = 0;
-		PreparedStatement ps = null;
-		Connection con = null;
-		try {
-			con = DataConnect.getConnection();
-			if (con != null) {
-				String sql = "INSERT INTO managers(firstname, lastname, address, email, passwordm, phonenumber, managername) VALUES(?,?,?,?,?,?,?)";
-				ps = con.prepareStatement(sql);
-				ps.setString(1, firstname);
-				ps.setString(2, lastname);
-				ps.setString(3, address);
-				ps.setString(4, email);
-				ps.setString(5, passwordm);
-				ps.setInt(6, phonenumber);
-				ps.setString(7, managername);
-				i = ps.executeUpdate();
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		} finally {
-			try {
-				con.close();
-				ps.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return "admin";
-	}
-	
-	
-
 	public void dbData(String uName) {
 		if (uName != null) {
 			PreparedStatement ps = null;
@@ -188,13 +155,13 @@ public class Manager {
 				try {
 					con = ds.getConnection();
 					if (con != null) {
-						String sql = "select name,passwordm from user where name = '"
+						String sql = "select name,password from user where name = '"
 								+ uName + "'";
 						ps = con.prepareStatement(sql);
 						rs = ps.executeQuery();
 						rs.next();
 						dbName = rs.getString("name");
-						dbPassword = rs.getString("passwordm");
+						dbPassword = rs.getString("password");
 					}
 				} catch (SQLException sqle) {
 					sqle.printStackTrace();

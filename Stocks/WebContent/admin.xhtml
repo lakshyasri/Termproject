@@ -1,45 +1,90 @@
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
-	  xmlns:f="http://java.sun.com/jsf/core" 
-	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<title>index.xhtml</title>
 </h:head>
+
 <h:body>
-	<div id="page">
-		<div id="header-container">
-			<div id="header">
-				<ui:insert name="header">
-					<p>Header</p>
-				</ui:insert>
-			</div>
-		</div>
-		<div id="messages-container">
-			<div id="messages">
-				<ui:insert name="messages">
-					<p>Messages</p>
-				</ui:insert>
-			</div>
-		</div>
-		<div id="content-container">
-			<div id="content">
-				<ui:insert name="content">
-					<p>Main content</p>
-				</ui:insert>
-			</div>
-			<div id="sidebar">
-				<ui:insert name="rightnav">
-					<p>Sidebar/Right-nav</p>
-				</ui:insert>
-			</div>
-		</div>
-		<div id="footer-container">
-			<div id="footer">
-				<ui:insert name="footer">
-					<p>Footer</p>
-				</ui:insert>
-			</div>
-		</div>
+<h:form>
+    <center>
+	<h2>Manager request list :</h2>
+	</center>
+	<div>
+		<h:dataTable value="#{adminBean.getUserList()}" var="u" border="1">
+		
+			<h:column>
+				<f:facet name="header">
+First name
+</f:facet>
+#{u.firstname}
+</h:column>
+            
+			<h:column>
+				<f:facet name="header">
+Last Name
+</f:facet>
+#{u.lastname}
+</h:column>
+
+			<h:column>
+				<f:facet name="header">
+Address
+</f:facet>
+#{u.address}
+</h:column>
+<h:column>
+				<f:facet name="header">
+Manager Name
+</f:facet>
+#{u.managername}
+</h:column>
+
+			<h:column>
+				<f:facet name="header">
+Phone number
+</f:facet>
+#{u.phonenumber}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Email</f:facet>
+				#{u.email}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Password</f:facet>
+				#{u.passwordm}
+			</h:column>
+
+			<h:column>
+
+    			<f:facet name="header">Delete</f:facet>
+
+    			<h:commandLink value="Delete"
+                                action="#{managerm.delete(u.phonenumber)}" />
+
+    		</h:column>
+       
+            <h:column>
+
+    			<f:facet name="header">Approve</f:facet>
+                
+    			<h:commandLink value="Approve"
+                                action="#{managerm.insertto(u.firstname, u.lastname, u.passwordm, u.address, u.email, u.phonenumber, u.managername)}" />
+ 
+    		</h:column>
+            
+
+		</h:dataTable>
+
 	</div>
+</h:form>
 </h:body>
+
+
 </html>

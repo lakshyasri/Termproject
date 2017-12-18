@@ -37,10 +37,10 @@
                 <div class="row">
 
                     <h:form>
-                        <label for="sel1">Stock: &#160; &#160; &#160; &#160; </label>
                         
+                        <label for="sel1">Stock: &#160; &#160; &#160; &#160; </label>
                         <h:selectOneMenu id="symbol" value="#{stockApiBean.selectedSymbol}">
-                            <f:selectItems value="#{stockApiBean.availableSymbols}" />
+                        <f:selectItems value="#{stockApiBean.availableSymbols}" />
                         </h:selectOneMenu>
                         
                         <br></br>
@@ -52,7 +52,8 @@
                         <br />
                         <h:commandButton value="Get Data" action="#{stockApiBean.timeseries}" styleClass="btn btn-success" /> &#160; &#160; &#160; 
                        <h:commandButton value="Get" action="#{stockApiBean.show}" styleClass="btn btn-success" /> &#160; &#160; &#160; 
-                        </h:form>
+                     <h:commandButton value="Update Profile" action = "userupdate" styleclass="btn btn-success" />
+                     </h:form>
                 </div>
 
                 <h:panelGroup rendered="#{not empty stockApiBean.table1Markup}">
