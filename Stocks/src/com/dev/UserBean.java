@@ -52,4 +52,77 @@ public class UserBean {
 		}
 		return list;
 	}
+
+	public List<Manager> getManagerList() {
+		System.out.println("in user List");
+		List<Manager> list = new ArrayList<Manager>();
+		PreparedStatement ps = null;
+		Connection con = null;
+		ResultSet rs = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DataConnect.getConnection();
+			String sql = "select * from managers";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Manager usr = new Manager();
+				usr.setFirstname(rs.getString("firstname"));
+				usr.setLastname(rs.getString("lastname"));
+				usr.setManagername(rs.getString("managername"));
+				usr.setAddress(rs.getString("address"));
+				usr.setPhonenumber(rs.getInt("phonenumber"));
+				usr.setEmail(rs.getString("email"));
+
+				list.add(usr);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+
+	public List<Manager> getRelationList() {
+		System.out.println("in user List");
+		List<Manager> list = new ArrayList<Manager>();
+		PreparedStatement ps = null;
+		Connection con = null;
+		ResultSet rs = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DataConnect.getConnection();
+			String sql = "select * from relation";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Manager usr = new Manager();
+				usr.setFirstname(rs.getString("firstname"));
+				usr.setLastname(rs.getString("lastname"));
+				usr.setManagername(rs.getString("managername"));
+				usr.setAddress(rs.getString("address"));
+				usr.setPhonenumber(rs.getInt("phonenumber"));
+				usr.setEmail(rs.getString("email"));
+
+				list.add(usr);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
 }

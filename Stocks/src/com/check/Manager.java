@@ -135,4 +135,34 @@ public class Manager {
 	}
 
 
+	public String relation( String firstname, String lastname, String address, String email, int phonenumber, String managername) {
+		int i = 0;
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			con = DataConnect.getConnection();
+			if (con != null) {
+				String sql = "INSERT INTO relation(firstname, lastname, address, email, phonenumber, managername) VALUES(?,?,?,?,?,?)";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, firstname);
+				ps.setString(2, lastname);
+				ps.setString(3, address);
+				ps.setString(4, email);
+				ps.setInt(5, phonenumber);
+				ps.setString(6, managername);
+				i = ps.executeUpdate();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+				ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return "userhome";
+	}
+
 }

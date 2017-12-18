@@ -1,6 +1,8 @@
 package com.login;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -12,12 +14,82 @@ import javax.faces.context.FacesContext;
 public class UserBean {
 
     private String username;
-    private String managername;
+    private String lastname;
+    private String lastnamem;
+   	private String managername;
     private String passwordm;
 	private String password;
+	private String passwordnewm;
 	private String adminusername;
-	private String adminpassword;
-    
+	private String adminpassword;  
+	private String address;
+	private String addressm;
+	public String getLastnamem() {
+		return lastnamem;
+	}
+
+	public void setLastnamem(String lastnamem) {
+		this.lastnamem = lastnamem;
+	}
+
+	public String getPasswordnewm() {
+		return passwordnewm;
+	}
+
+	public void setPasswordnewm(String passwordnewm) {
+		this.passwordnewm = passwordnewm;
+	}
+
+	public String getAddressm() {
+		return addressm;
+	}
+
+	public void setAddressm(String addressm) {
+		this.addressm = addressm;
+	}
+	private String passwordnew;
+	
+	public String getPasswordnew() {
+		return passwordnew;
+	}
+
+	public void setPasswordnew(String passwordnew) {
+		this.passwordnew = passwordnew;
+	}
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	private String email;
+	private String emailm;
+	
+	 public String getEmailm() {
+		return emailm;
+	}
+
+	public void setEmailm(String emailm) {
+		this.emailm = emailm;
+	}
+
+	public String getLastname() {
+			return lastname;
+		}
+
+		public void setLastname(String lastname) {
+			this.lastname = lastname;
+		}
+	
     public String getAdminusername() {
 		return adminusername;
 	}
@@ -103,4 +175,237 @@ public class UserBean {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
     }
+	public String updatePassword() {
+		int i = 0;
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			con = DataConnect.getConnection();
+			if (con != null) {
+				String sql = "UPDATE users set password = ? WHERE username = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, passwordnew);
+				ps.setString(2, username);
+				i = ps.executeUpdate();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+				ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (i > 0) {
+			return "index1";
+		} else
+			return "index";
+	}
+	
+	public String updateEmail() {
+		int i = 0;
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			con = DataConnect.getConnection();
+			if (con != null) {
+				String sql = "UPDATE users set email = ? WHERE username = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, email);
+				ps.setString(2, username);
+				i = ps.executeUpdate();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+				ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (i > 0) {
+			return "index1";
+		} else
+			return "index";
+	}
+	public String updateAddress() {
+		int i = 0;
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			con = DataConnect.getConnection();
+			if (con != null) {
+				String sql = "UPDATE users set address = ? WHERE username = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, address);
+				ps.setString(2, username);
+				i = ps.executeUpdate();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+				ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (i > 0) {
+			return "index";
+		} else
+			return "index";
+	}
+	public String updateLastName() {
+		int i = 0;
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			con = DataConnect.getConnection();
+			if (con != null) {
+				String sql = "UPDATE users set lastname = ? WHERE username = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, lastname);
+				ps.setString(2, username);
+				i = ps.executeUpdate();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+				ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (i > 0) {
+			return "index";
+		} else
+			return "index";
+	}
+	
+	
+	public String updateMpassword() {
+		int i = 0;
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			con = DataConnect.getConnection();
+			if (con != null) {
+				String sql = "UPDATE managers set password = ? WHERE managername = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, passwordnewm);
+				ps.setString(2, managername);
+				i = ps.executeUpdate();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+				ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (i > 0) {
+			return "managerindex";
+		} else
+			return "index";
+	}
+	
+	public String updateMemail() {
+		int i = 0;
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			con = DataConnect.getConnection();
+			if (con != null) {
+				String sql = "UPDATE managers set email = ? WHERE managername = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, emailm);
+				ps.setString(2, managername);
+				i = ps.executeUpdate();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+				ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (i > 0) {
+			return "managerindex";
+		} else
+			return "index";
+	}
+	public String updateMaddress() {
+		int i = 0;
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			con = DataConnect.getConnection();
+			if (con != null) {
+				String sql = "UPDATE managers set address = ? WHERE managername = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, addressm);
+				ps.setString(2, managername);
+				i = ps.executeUpdate();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+				ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (i > 0) {
+			return "managerindex";
+		} else
+			return "index";
+	}
+	public String updateMlastName() {
+		int i = 0;
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			con = DataConnect.getConnection();
+			if (con != null) {
+				String sql = "UPDATE managers set lastname = ? WHERE managername = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, lastnamem);
+				ps.setString(2, managername);
+				i = ps.executeUpdate();
+				System.out.println("hello");
+				System.out.println("last name , manager name" + this.lastnamem + this.managername);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				con.close();
+				ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (i > 0) {
+			return "managerindex";
+		} else
+			return "index";
+	}
+	
+	
+	
 }

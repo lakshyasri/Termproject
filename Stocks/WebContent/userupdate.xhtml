@@ -14,8 +14,7 @@
         
         div.transbox 
         {
-        margin: 30px;
-        width : 400px;
+        
         background-color: #ffffff;
         border: 1px solid black;
         opacity: 0.9;
@@ -38,10 +37,45 @@
         <link rel="stylesheet" href="css/style.css" ></link>
     </h:head>
     <h:body styleClass="Backimage">
+    <div class="transbox">
         
+                <h:form id="login" class="form-signin">
+                <h2 class="form-signin-heading">Login User</h2>
+                <h:messages style="color: red;"/>
+                <div class="form-group">
+                
+                <div class="form-group">
+                    <h:outputLabel value="Last Name"/>
+                    <h:inputText id="lastname" value="#{userBean.lastname}"  p:placeholder="New Last name" styleClass="form-control" />
+                     <h:commandButton value="Update" action="#{userBean.updateLastName}" styleClass="btn btn-success btn-login-submit" /> 
+                </div>
+                
+                <div class="form-group">
+                    <h:outputLabel value="Address"/>
+                    <h:inputText id="address" value="#{userBean.address}"  p:placeholder="New Address" styleClass="form-control" />
+                     <h:commandButton value="Update" action="#{userBean.updateAddress}" styleClass="btn btn-success btn-login-submit" /> 
+                </div>
+               
+                
+                <div class="form-group">
+                    <h:outputLabel value="Email"/>
+                    <h:inputText id="email" value="#{userBean.email}" p:placeholder=" New Email"  styleClass="form-control" />
+                     <h:commandButton value="Update" action="#{userBean.updateEmail}" styleClass="btn btn-success btn-login-submit" /> 
+                </div>
+                
+                <div class="form-group">
+                    <h:outputLabel value="Password"/>
+                    <h:inputText id="password" value="#{userBean.passwordnew}"  p:placeholder=" New Password" styleClass="form-control" />
+                     <h:commandButton value="Update" action="#{userBean.updatePassword}" styleClass="btn btn-success btn-login-submit" /> 
+                </div>
+                
+              </div>   
+              </h:form>
+            
         <!-- Bootstrap core JavaScript -->
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    </div>
     </h:body>
 </html>
