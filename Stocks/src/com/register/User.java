@@ -123,8 +123,8 @@ public class User {
 					ps.setString(2, lastname);
 					ps.setString(3, address);
 					ps.setString(4, email);
-					ps.setString(5, password);
-					ps.setString(6, phonenumber);
+					ps.setString(5, phonenumber);
+					ps.setString(6, password);
 					ps.setString(7, username);
 					i = ps.executeUpdate();
 				}
